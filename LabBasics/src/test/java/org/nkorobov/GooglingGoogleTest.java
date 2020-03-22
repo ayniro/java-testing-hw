@@ -5,6 +5,8 @@ import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class GooglingGoogleTest {
 
     private static WebDriver driver;
@@ -17,6 +19,7 @@ public class GooglingGoogleTest {
     @Before
     public void setupDriver() {
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     @After

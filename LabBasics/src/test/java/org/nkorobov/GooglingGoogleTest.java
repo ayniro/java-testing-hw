@@ -39,6 +39,6 @@ public class GooglingGoogleTest {
 
         Assert.assertTrue(
                 firstFoundLink.equals("https://www.google.ru/") ||
-                        firstFoundLink.equals("https://www.google.com/"));
+                firstFoundLink.equals("https://www.google.com/"));
     }
 }

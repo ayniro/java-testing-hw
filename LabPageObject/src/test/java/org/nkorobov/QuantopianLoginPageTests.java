@@ -32,7 +32,7 @@ public class QuantopianLoginPageTests extends BaseTests {
 
     @Category(TestCategories.LoginTests.class)
     @Test
-    public void loginAttemptFailed() {
+    public void loginAttemptFailedTest() {
         driver.get(QuantopianLoginPage.getLoginPageUrl());
 
         QuantopianLoginPage loginPage = new QuantopianLoginPage(driver);

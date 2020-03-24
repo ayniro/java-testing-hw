@@ -1,12 +1,10 @@
 package org.nkorobov;
 
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class QuantopianContestPage extends BasePage {
 

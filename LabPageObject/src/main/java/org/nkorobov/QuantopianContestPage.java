@@ -1,92 +1,96 @@
 package org.nkorobov;
 
+import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class QuantopianContestPage {
+public class QuantopianContestPage extends BasePage {
 
-    private static final String contestPageUrl = "https://www.quantopian.com/contest";
-    private static final String contestPageTitle = "Quantopian Contest: A Quant Finance Competition";
-
-    private static final String submissionDivXPath = "//div[@class='hero-wrapper']//div[@class='contest-submission-modal']";
-
-    private static final String modalBodyXPath = "//div[@id='join-modal']//div[@class='modal-body']";
-    private static final String termsOfUseCheckboxXPath = ".//input[@id='eula-checkbox']";
-    private static final String joinButtonXPath = ".//button[@id='sign-up-button']";
-    private static final String firstNameWarningXPath = ".//label[@id='user_firstname-error']";
-    private static final String lastNameWarningXPath = ".//label[@id='user_lastname-error']";
-    private static final String emailWarningXPath = ".//label[@id='user_email-error']";
-    private static final String passwordWarningXPath = ".//label[@id='user_password-error']";
-
-    private WebDriverWait webDriverWait;
+    {
+        pageTitle = "Quantopian Contest: A Quant Finance Competition";
+        pageUrl = "https://www.quantopian.com/contest";
+    }
 
     @FindBy(xpath = "//a[@class='navbar-brand']")
     private WebElement homeLink;
     @FindBy(xpath = "//div[@class='hero-wrapper']//div[@class='contest-submission-modal']//child::button")
     private WebElement submitButton;
 
+    private By modalBodyLocator = By.xpath("//div[@id='join-modal']//div[@class='modal-body']");
+    private By termsOfUseCheckboxLocator = By.xpath(".//input[@id='eula-checkbox']");
+    private By joinButtonLocator = By.xpath(".//button[@id='sign-up-button']");
+    private By firstNameWarningLocator = By.xpath(".//label[@id='user_firstname-error']");
+    private By lastNameWarningLocator = By.xpath(".//label[@id='user_lastname-error']");
+    private By emailWarningLocator = By.xpath(".//label[@id='user_email-error']");
+    private By passwordWarningLocator = By.xpath(".//label[@id='user_password-error']");
+    private By opacityCheckModalLocator = By.xpath("//div[@id='join-modal']");
+
     private WebElement modalSubmitWindow;
 
-    QuantopianContestPage(WebDriver driver) {
+    public QuantopianContestPage(WebDriver driver) {
+        this(driver, true);
+    }
+
+    public QuantopianContestPage(WebDriver driver, boolean openPage) {
+        super(driver, 10);
+        if (openPage) {
+            openPage();
+        }
+
+        if (!pageTitle.equals(driver.getTitle()) || !pageUrl.equals(driver.getCurrentUrl())) {
+            throw new IllegalStateException("Wrong page");
+        }
+
         PageFactory.initElements(driver, this);
-        webDriverWait = new WebDriverWait(driver, 100);
     }
 
-    public void transitionToHomePage() {
+    public QuantopianHomePage transitionToHomePage() {
         homeLink.click();
-        waitForPageChange();
+        waitForReadyStateComplete();
+        return new QuantopianHomePage(driver, false);
     }
 
-    public void pressSubmitEntry() {
+    public QuantopianContestPage pressSubmitEntry() {
         submitButton.click();
+        waitForModalWindow();
+        return this;
     }
 
-    public void fillCheckboxAndJoin() {
-        waitForModalWindow();
-        checkTermsOfUse();
-        pressJoinButton();
+    public QuantopianContestPage checkTermsOfUseCheckbox() {
+        WebElement checkBox = modalSubmitWindow.findElement(termsOfUseCheckboxLocator);
+        checkBox.click();
+        return this;
+    }
+
+    public QuantopianContestPage pressJoinButton() {
+        WebElement joinButton = modalSubmitWindow.findElement(joinButtonLocator);
+        joinButton.click();
+        return this;
     }
 
     public boolean allWarningsAreActive() {
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(firstNameWarningXPath)));
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lastNameWarningXPath)));
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailWarningXPath)));
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordWarningXPath)));
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(firstNameWarningLocator));
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(lastNameWarningLocator));
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(emailWarningLocator));
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(passwordWarningLocator));
         } catch (TimeoutException e) {
             return false;
         }
         return true;
     }
 
-    public static String getContestPageUrl() {
-        return contestPageUrl;
-    }
-
-    public static String getContestPageTitle() {
-        return contestPageTitle;
-    }
-
-    private void waitForPageChange() {
-        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(submissionDivXPath)));
-    }
-
     private void waitForModalWindow() {
         modalSubmitWindow = webDriverWait.until(
-                ExpectedConditions.presenceOfElementLocated(By.xpath(modalBodyXPath)));
+                ExpectedConditions.presenceOfElementLocated(modalBodyLocator));
+        webDriverWait.until(
+                (ExpectedCondition<Boolean>) webDriver ->
+                        driver.findElement(opacityCheckModalLocator).getCssValue("opacity").equals("1")
+        );
     }
 
-    private void checkTermsOfUse() {
-        WebElement checkBox = modalSubmitWindow.findElement(By.xpath(termsOfUseCheckboxXPath));
-        webDriverWait.until(ExpectedConditions.elementSelectionStateToBe(checkBox, false));
-        checkBox.sendKeys(Keys.SPACE); // Animated form made me suffer
-    }
-
-    private void pressJoinButton() {
-        WebElement joinButton = modalSubmitWindow.findElement(By.xpath(joinButtonXPath));
-        joinButton.sendKeys(Keys.ENTER); // Animated form made me suffer
-    }
 }

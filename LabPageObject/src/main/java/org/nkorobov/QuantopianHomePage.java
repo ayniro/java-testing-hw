@@ -8,14 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class QuantopianHomePage {
+public class QuantopianHomePage extends BasePage {
 
-    private static final String homePageUrl = "https://www.quantopian.com/";
-    private static final String homePageTitle = "Quantopian: The Place For Learning Quant Finance";
+    {
+        pageTitle = "Quantopian: The Place For Learning Quant Finance";
+        pageUrl = "https://www.quantopian.com/";
+    }
 
-    private static final String homePageVideoXPath = "//div[@class='video-wrapper']//video";
-
-    private WebDriverWait webDriverWait;
+    private static String fullPageUrl = "https://www.quantopian.com/home";
 
     @FindBy(xpath = "//a[contains(text(),'Log In')]")
     private WebElement loginButton;
@@ -23,33 +23,37 @@ public class QuantopianHomePage {
     private WebElement contestButton;
 
     public QuantopianHomePage(WebDriver driver) {
+        this(driver, true);
+    }
+
+    public QuantopianHomePage(WebDriver driver, boolean openPage) {
+        super(driver, 10);
+        if (openPage) {
+            openPage();
+        }
+
+        if (!pageTitle.equals(driver.getTitle()) ||
+                !(pageUrl.equals(driver.getCurrentUrl()) || fullPageUrl.equals(driver.getCurrentUrl()))) {
+            throw new IllegalStateException("Wrong page");
+        }
+
         PageFactory.initElements(driver, this);
-        webDriverWait = new WebDriverWait(driver, 10);
     }
 
-    public void transitionToLoginPage() {
+    public QuantopianLoginPage transitionToLoginPage() {
         loginButton.click();
-        waitForPageChange();
+        waitForReadyStateComplete();
+        return new QuantopianLoginPage(driver, false);
     }
 
-    public void transitionToContestPage() {
+    public QuantopianContestPage transitionToContestPage() {
         contestButton.click();
-        waitForPageChange();
+        waitForReadyStateComplete();
+        return new QuantopianContestPage(driver, false);
     }
 
-    public static String getHomePageUrl() {
-        return homePageUrl;
+    public String getFullHomePageUrl() {
+        return pageUrl + "home";
     }
 
-    public static String getFullHomePageUrl() {
-        return homePageUrl + "home";
-    }
-
-    public static String getHomePageTitle() {
-        return homePageTitle;
-    }
-
-    private void waitForPageChange() {
-        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(homePageVideoXPath)));
-    }
 }

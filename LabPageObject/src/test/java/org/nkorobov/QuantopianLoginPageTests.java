@@ -9,8 +9,6 @@ public class QuantopianLoginPageTests extends BaseTests {
     @Category(TestCategories.LoginTests.class)
     @Test
     public void loginAttemptEmptyFieldsTest() {
-        driver.get(QuantopianLoginPage.getLoginPageUrl());
-
         QuantopianLoginPage loginPage = new QuantopianLoginPage(driver);
         loginPage.signIn();
 
@@ -21,11 +19,8 @@ public class QuantopianLoginPageTests extends BaseTests {
     @Category(TestCategories.LoginTests.class)
     @Test
     public void loginAttemptIncorrectEmailTest() {
-        driver.get(QuantopianLoginPage.getLoginPageUrl());
-
-        QuantopianLoginPage loginPage = new QuantopianLoginPage(driver);
-        loginPage.enterEmail("Sometimes stonks go down, but then they go up");
-        loginPage.enterPassword("");
+        QuantopianLoginPage loginPage = new QuantopianLoginPage(driver, true);
+        loginPage.enterEmail("Sometimes stonks go down, but then they go up").enterPassword("");
 
         Assert.assertTrue(loginPage.emailWarningIsActive());
     }
@@ -33,12 +28,8 @@ public class QuantopianLoginPageTests extends BaseTests {
     @Category(TestCategories.LoginTests.class)
     @Test
     public void loginAttemptFailedTest() {
-        driver.get(QuantopianLoginPage.getLoginPageUrl());
-
-        QuantopianLoginPage loginPage = new QuantopianLoginPage(driver);
-        loginPage.enterEmail("$SPY_100P_4/17@gmail.com");
-        loginPage.enterPassword("BearsBearsBears");
-        loginPage.signIn();
+        QuantopianLoginPage loginPage = new QuantopianLoginPage(driver, true);
+        loginPage.enterEmail("$SPY_100P_4/17@gmail.com").enterPassword("BearsBearsBears").signIn();
 
         Assert.assertTrue(loginPage.failedLoginMessageIsActive());
     }

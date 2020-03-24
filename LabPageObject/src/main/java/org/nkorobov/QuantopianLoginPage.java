@@ -9,16 +9,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class QuantopianLoginPage {
 
-    private static final String loginPageUrl = "https://www.quantopian.com/signin";
-    private static final String loginPageTitle = "Quantopian Login";
+public class QuantopianLoginPage extends BasePage {
 
-    private static final String emailWarningXPath = "//label[@id='user_email-error']";
-    private static final String passwordWarningXPath = "//label[@id='user_password-error']";
-    private static final String failedLoginMessageXPath = "//div[@class='message']";
-
-    private WebDriverWait webDriverWait;
+    {
+        pageTitle = "Quantopian Login";
+        pageUrl = "https://www.quantopian.com/signin";
+    }
 
     @FindBy(xpath = "//input[@id='user_email']")
     private WebElement emailInput;
@@ -27,17 +24,35 @@ public class QuantopianLoginPage {
     @FindBy(xpath = "//button[@id='login-button']")
     private WebElement signInButton;
 
+    private By emailWarningLocator = By.xpath("//label[@id='user_email-error']");
+    private By passwordWarningLocator = By.xpath("//label[@id='user_password-error']");
+    private By failedLoginMessageLocator = By.xpath("//div[@class='message']");
+
     public QuantopianLoginPage(WebDriver driver) {
+        this(driver, true);
+    }
+
+    public QuantopianLoginPage(WebDriver driver, boolean openPage) {
+        super(driver, 2);
+        if (openPage) {
+            openPage();
+        }
+
+        if (!pageTitle.equals(driver.getTitle()) || !pageUrl.equals(driver.getCurrentUrl())) {
+            throw new IllegalStateException("Wrong page");
+        }
+
         PageFactory.initElements(driver, this);
-        webDriverWait = new WebDriverWait(driver, 2);
     }
 
-    public void enterEmail(String email) {
+    public QuantopianLoginPage enterEmail(String email) {
         emailInput.sendKeys(email);
+        return this;
     }
 
-    public void enterPassword(String password) {
+    public QuantopianLoginPage enterPassword(String password) {
         passwordInput.sendKeys(password);
+        return this;
     }
 
     public void signIn() {
@@ -45,37 +60,23 @@ public class QuantopianLoginPage {
     }
 
     public boolean emailWarningIsActive() {
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(emailWarningXPath)));
-        } catch (TimeoutException e) {
-            return false;
-        }
-        return true;
+        return waitUntilVisibleOrTimedOut(emailWarningLocator);
     }
 
     public boolean passwordWarningIsActive() {
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(passwordWarningXPath)));
-        } catch (TimeoutException e) {
-            return false;
-        }
-        return true;
+        return waitUntilVisibleOrTimedOut(passwordWarningLocator);
     }
 
     public boolean failedLoginMessageIsActive() {
+        return waitUntilVisibleOrTimedOut(failedLoginMessageLocator);
+    }
+
+    private boolean waitUntilVisibleOrTimedOut(By locator) {
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(failedLoginMessageXPath)));
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (TimeoutException e) {
             return false;
         }
         return true;
-    }
-
-    public static String getLoginPageUrl() {
-        return loginPageUrl;
-    }
-
-    public static String getLoginPageTitle() {
-        return loginPageTitle;
     }
 }

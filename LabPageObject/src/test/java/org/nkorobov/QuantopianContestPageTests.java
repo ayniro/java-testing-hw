@@ -9,23 +9,18 @@ public class QuantopianContestPageTests extends BaseTests {
     @Category(TestCategories.TransitionTests.class)
     @Test
     public void transitionFromContestToHome() {
-        driver.get(QuantopianContestPage.getContestPageUrl());
-
         QuantopianContestPage contestPage = new QuantopianContestPage(driver);
-        contestPage.transitionToHomePage();
+        QuantopianHomePage homePage = contestPage.transitionToHomePage();
 
-        Assert.assertEquals(QuantopianHomePage.getHomePageTitle(), driver.getTitle());
-        Assert.assertEquals(QuantopianHomePage.getFullHomePageUrl(), driver.getCurrentUrl());
+        Assert.assertEquals(homePage.getPageTitle(), driver.getTitle());
+        Assert.assertEquals(homePage.getFullHomePageUrl(), driver.getCurrentUrl());
     }
 
     @Category(TestCategories.LoginTests.class)
     @Test
     public void submitEntryEmptyFieldsTest() {
-        driver.get(QuantopianContestPage.getContestPageUrl());
-
         QuantopianContestPage contestPage = new QuantopianContestPage(driver);
-        contestPage.pressSubmitEntry();
-        contestPage.fillCheckboxAndJoin();
+        contestPage.pressSubmitEntry().checkTermsOfUseCheckbox().pressJoinButton();
 
         Assert.assertTrue(contestPage.allWarningsAreActive());
     }

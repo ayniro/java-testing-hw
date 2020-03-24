@@ -50,7 +50,7 @@ public class QuantopianHomePage extends BasePage {
     }
 
     public String getFullHomePageUrl() {
-        return pageUrl + "home";
+        return fullPageUrl;
     }
 
 }

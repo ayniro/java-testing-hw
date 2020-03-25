@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "af774c1a-0873-4a24-98c2-1ab508fdf745",
+		"name": "java-testing-hw",
+		"description": "3 requests to alphavantage.co API:\n\t- Search by symbol\n\t- Get RSI data\n\t- Get latest data\n\nAPI docs: https://www.alphavantage.co/documentation/",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SymbolSearch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesla&datatype=json&apikey={{alphaVantageApiKey}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"alphavantage",
+						"co"
+					],
+					"path": [
+						"query"
+					],
+					"query": [
+						{
+							"key": "function",
+							"value": "SYMBOL_SEARCH"
+						},
+						{
+							"key": "keywords",
+							"value": "tesla"
+						},
+						{
+							"key": "datatype",
+							"value": "json"
+						},
+						{
+							"key": "apikey",
+							"value": "{{alphaVantageApiKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RsiRequest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.alphavantage.co/query?function=RSI&symbol=MSFT&interval=monthly&time_period=50&series_type=close&apikey={{alphaVantageApiKey}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"alphavantage",
+						"co"
+					],
+					"path": [
+						"query"
+					],
+					"query": [
+						{
+							"key": "function",
+							"value": "RSI"
+						},
+						{
+							"key": "symbol",
+							"value": "MSFT"
+						},
+						{
+							"key": "interval",
+							"value": "monthly"
+						},
+						{
+							"key": "time_period",
+							"value": "50"
+						},
+						{
+							"key": "series_type",
+							"value": "close"
+						},
+						{
+							"key": "apikey",
+							"value": "{{alphaVantageApiKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LatestData",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=SPY&apikey={{alphaVantageApiKey}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"alphavantage",
+						"co"
+					],
+					"path": [
+						"query"
+					],
+					"query": [
+						{
+							"key": "function",
+							"value": "GLOBAL_QUOTE"
+						},
+						{
+							"key": "symbol",
+							"value": "SPY"
+						},
+						{
+							"key": "apikey",
+							"value": "{{alphaVantageApiKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "cd0ea2ab-07d7-4062-bfbd-6d642b98e31b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7fec0544-1cd8-4a6a-9a3d-0dfb13641341",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

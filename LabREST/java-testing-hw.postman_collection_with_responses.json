@@ -1,0 +1,398 @@
+{
+	"info": {
+		"_postman_id": "af774c1a-0873-4a24-98c2-1ab508fdf745",
+		"name": "java-testing-hw",
+		"description": "3 requests to alphavantage.co API:\n\t- Search by symbol\n\t- Get RSI data\n\t- Get latest data\n\nAPI docs: https://www.alphavantage.co/documentation/",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SymbolSearch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesla&datatype=json&apikey={{alphaVantageApiKey}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"alphavantage",
+						"co"
+					],
+					"path": [
+						"query"
+					],
+					"query": [
+						{
+							"key": "function",
+							"value": "SYMBOL_SEARCH"
+						},
+						{
+							"key": "keywords",
+							"value": "tesla"
+						},
+						{
+							"key": "datatype",
+							"value": "json"
+						},
+						{
+							"key": "apikey",
+							"value": "{{alphaVantageApiKey}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SymbolSearchExample",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesla&datatype=json&apikey={{alphaVantageApiKey}}",
+							"protocol": "https",
+							"host": [
+								"www",
+								"alphavantage",
+								"co"
+							],
+							"path": [
+								"query"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "SYMBOL_SEARCH"
+								},
+								{
+									"key": "keywords",
+									"value": "tesla"
+								},
+								{
+									"key": "datatype",
+									"value": "json"
+								},
+								{
+									"key": "apikey",
+									"value": "{{alphaVantageApiKey}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.7.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 25 Mar 2020 10:34:08 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bestMatches\": [\n        {\n            \"1. symbol\": \"TSLA\",\n            \"2. name\": \"Tesla Inc.\",\n            \"3. type\": \"Equity\",\n            \"4. region\": \"United States\",\n            \"5. marketOpen\": \"09:30\",\n            \"6. marketClose\": \"16:00\",\n            \"7. timezone\": \"UTC-05\",\n            \"8. currency\": \"USD\",\n            \"9. matchScore\": \"0.8889\"\n        },\n        {\n            \"1. symbol\": \"TXLZF\",\n            \"2. name\": \"Tesla Exploration Ltd.\",\n            \"3. type\": \"Equity\",\n            \"4. region\": \"United States\",\n            \"5. marketOpen\": \"09:30\",\n            \"6. marketClose\": \"16:00\",\n            \"7. timezone\": \"UTC-05\",\n            \"8. currency\": \"USD\",\n            \"9. matchScore\": \"0.6667\"\n        },\n        {\n            \"1. symbol\": \"TL0.FRK\",\n            \"2. name\": \"Tesla Inc.\",\n            \"3. type\": \"Equity\",\n            \"4. region\": \"Frankfurt\",\n            \"5. marketOpen\": \"08:00\",\n            \"6. marketClose\": \"20:00\",\n            \"7. timezone\": \"UTC+02\",\n            \"8. currency\": \"EUR\",\n            \"9. matchScore\": \"0.6667\"\n        },\n        {\n            \"1. symbol\": \"TSLA.MEX\",\n            \"2. name\": \"Tesla Inc.\",\n            \"3. type\": \"Equity\",\n            \"4. region\": \"Mexico\",\n            \"5. marketOpen\": \"08:30\",\n            \"6. marketClose\": \"15:00\",\n            \"7. timezone\": \"UTC-05\",\n            \"8. currency\": \"MXP\",\n            \"9. matchScore\": \"0.6667\"\n        },\n        {\n            \"1. symbol\": \"TL0.DEX\",\n            \"2. name\": \"Tesla Inc.\",\n            \"3. type\": \"Equity\",\n            \"4. region\": \"XETRA\",\n            \"5. marketOpen\": \"08:00\",\n            \"6. marketClose\": \"20:00\",\n            \"7. timezone\": \"UTC+02\",\n            \"8. currency\": \"EUR\",\n            \"9. matchScore\": \"0.6250\"\n        },\n        {\n            \"1. symbol\": \"TSLA34.SAO\",\n            \"2. name\": \"Tesla Inc.\",\n            \"3. type\": \"Equity\",\n            \"4. region\": \"Brazil/Sao Paolo\",\n            \"5. marketOpen\": \"10:00\",\n            \"6. marketClose\": \"17:30\",\n            \"7. timezone\": \"UTC-03\",\n            \"8. currency\": \"BRL\",\n            \"9. matchScore\": \"0.6250\"\n        },\n        {\n            \"1. symbol\": \"TSLA.MIL\",\n            \"2. name\": \"Tesla Inc.\",\n            \"3. type\": \"Equity\",\n            \"4. region\": \"Milan\",\n            \"5. marketOpen\": \"09:00\",\n            \"6. marketClose\": \"17:30\",\n            \"7. timezone\": \"UTC+02\",\n            \"8. currency\": \"EUR\",\n            \"9. matchScore\": \"0.6250\"\n        },\n        {\n            \"1. symbol\": \"TSLA.VIE\",\n            \"2. name\": \"Tesla Inc.\",\n            \"3. type\": \"Equity\",\n            \"4. region\": \"Vienna\",\n            \"5. marketOpen\": \"08:55\",\n            \"6. marketClose\": \"17:35\",\n            \"7. timezone\": \"UTC+02\",\n            \"8. currency\": \"EUR\",\n            \"9. matchScore\": \"0.4167\"\n        },\n        {\n            \"1. symbol\": \"TL0.HAM\",\n            \"2. name\": \"TESLA INC. DL -,001\",\n            \"3. type\": \"Equity\",\n            \"4. region\": \"Hamburg\",\n            \"5. marketOpen\": \"08:00\",\n            \"6. marketClose\": \"20:00\",\n            \"7. timezone\": \"UTC+02\",\n            \"8. currency\": \"EUR\",\n            \"9. matchScore\": \"0.4000\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "RsiRequest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.alphavantage.co/query?function=RSI&symbol=MSFT&interval=monthly&time_period=50&series_type=close&apikey={{alphaVantageApiKey}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"alphavantage",
+						"co"
+					],
+					"path": [
+						"query"
+					],
+					"query": [
+						{
+							"key": "function",
+							"value": "RSI"
+						},
+						{
+							"key": "symbol",
+							"value": "MSFT"
+						},
+						{
+							"key": "interval",
+							"value": "monthly"
+						},
+						{
+							"key": "time_period",
+							"value": "50"
+						},
+						{
+							"key": "series_type",
+							"value": "close"
+						},
+						{
+							"key": "apikey",
+							"value": "{{alphaVantageApiKey}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "RsiRequestExample",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.alphavantage.co/query?function=RSI&symbol=MSFT&interval=monthly&time_period=50&series_type=close&apikey={{alphaVantageApiKey}}",
+							"protocol": "https",
+							"host": [
+								"www",
+								"alphavantage",
+								"co"
+							],
+							"path": [
+								"query"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "RSI"
+								},
+								{
+									"key": "symbol",
+									"value": "MSFT"
+								},
+								{
+									"key": "interval",
+									"value": "monthly"
+								},
+								{
+									"key": "time_period",
+									"value": "50"
+								},
+								{
+									"key": "series_type",
+									"value": "close"
+								},
+								{
+									"key": "apikey",
+									"value": "{{alphaVantageApiKey}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.7.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 25 Mar 2020 10:31:59 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Meta Data\": {\n        \"1: Symbol\": \"MSFT\",\n        \"2: Indicator\": \"Relative Strength Index (RSI)\",\n        \"3: Last Refreshed\": \"2020-03-24\",\n        \"4: Interval\": \"monthly\",\n        \"5: Time Period\": 50,\n        \"6: Series Type\": \"close\",\n        \"7: Time Zone\": \"US/Eastern Time\"\n    },\n    \"Technical Analysis: RSI\": {\n        \"2020-03-24\": {\n            \"RSI\": \"67.7099\"\n        },\n        \"2020-02-28\": {\n            \"RSI\": \"72.8225\"\n        },\n        \"2020-01-31\": {\n            \"RSI\": \"76.2136\"\n        },\n        \"2019-12-31\": {\n            \"RSI\": \"74.4352\"\n        },\n        \"2019-11-29\": {\n            \"RSI\": \"73.4542\"\n        },\n        \"2019-10-31\": {\n            \"RSI\": \"72.1256\"\n        },\n        \"2019-09-30\": {\n            \"RSI\": \"71.3646\"\n        },\n        \"2019-08-30\": {\n            \"RSI\": \"71.1565\"\n        },\n        \"2019-07-31\": {\n            \"RSI\": \"70.8747\"\n        },\n        \"2019-06-28\": {\n            \"RSI\": \"70.4639\"\n        },\n        \"2019-05-31\": {\n            \"RSI\": \"68.5276\"\n        },\n        \"2019-04-30\": {\n            \"RSI\": \"71.6251\"\n        },\n        \"2019-03-29\": {\n            \"RSI\": \"69.1228\"\n        },\n        \"2019-02-28\": {\n            \"RSI\": \"67.8247\"\n        },\n        \"2019-01-31\": {\n            \"RSI\": \"66.0246\"\n        },\n        \"2018-12-31\": {\n            \"RSI\": \"65.3088\"\n        },\n        \"2018-11-30\": {\n            \"RSI\": \"70.0197\"\n        },\n        \"2018-10-31\": {\n            \"RSI\": \"69.0623\"\n        },\n        \"2018-09-28\": {\n            \"RSI\": \"73.3136\"\n        },\n        \"2018-08-31\": {\n            \"RSI\": \"72.8720\"\n        },\n        \"2018-07-31\": {\n            \"RSI\": \"71.4537\"\n        },\n        \"2018-06-29\": {\n            \"RSI\": \"69.5915\"\n        },\n        \"2018-05-31\": {\n            \"RSI\": \"69.7288\"\n        },\n        \"2018-04-30\": {\n            \"RSI\": \"68.3122\"\n        },\n        \"2018-03-29\": {\n            \"RSI\": \"67.6854\"\n        },\n        \"2018-02-28\": {\n            \"RSI\": \"69.1753\"\n        },\n        \"2018-01-31\": {\n            \"RSI\": \"69.9235\"\n        },\n        \"2017-12-29\": {\n            \"RSI\": \"67.2744\"\n        },\n        \"2017-11-30\": {\n            \"RSI\": \"66.8606\"\n        },\n        \"2017-10-31\": {\n            \"RSI\": \"66.5612\"\n        },\n        \"2017-09-29\": {\n            \"RSI\": \"63.7431\"\n        },\n        \"2017-08-31\": {\n            \"RSI\": \"63.9131\"\n        },\n        \"2017-07-31\": {\n            \"RSI\": \"63.2018\"\n        },\n        \"2017-06-30\": {\n            \"RSI\": \"61.8598\"\n        },\n        \"2017-05-31\": {\n            \"RSI\": \"62.3981\"\n        },\n        \"2017-04-28\": {\n            \"RSI\": \"61.9055\"\n        },\n        \"2017-03-31\": {\n            \"RSI\": \"60.9612\"\n        },\n        \"2017-02-28\": {\n            \"RSI\": \"60.2631\"\n        },\n        \"2017-01-31\": {\n            \"RSI\": \"60.6418\"\n        },\n        \"2016-12-30\": {\n            \"RSI\": \"59.7124\"\n        },\n        \"2016-11-30\": {\n            \"RSI\": \"59.0017\"\n        },\n        \"2016-10-31\": {\n            \"RSI\": \"58.8731\"\n        },\n        \"2016-09-30\": {\n            \"RSI\": \"57.9921\"\n        },\n        \"2016-08-31\": {\n            \"RSI\": \"57.9389\"\n        },\n        \"2016-07-29\": {\n            \"RSI\": \"57.6455\"\n        },\n        \"2016-06-30\": {\n            \"RSI\": \"55.4970\"\n        },\n        \"2016-05-31\": {\n            \"RSI\": \"56.4287\"\n        },\n        \"2016-04-29\": {\n            \"RSI\": \"55.1671\"\n        },\n        \"2016-03-31\": {\n            \"RSI\": \"57.9847\"\n        },\n        \"2016-02-29\": {\n            \"RSI\": \"56.2057\"\n        },\n        \"2016-01-29\": {\n            \"RSI\": \"58.5573\"\n        },\n        \"2015-12-31\": {\n            \"RSI\": \"58.7805\"\n        },\n        \"2015-11-30\": {\n            \"RSI\": \"58.3294\"\n        },\n        \"2015-10-30\": {\n            \"RSI\": \"57.6419\"\n        },\n        \"2015-09-30\": {\n            \"RSI\": \"53.9967\"\n        },\n        \"2015-08-31\": {\n            \"RSI\": \"53.6515\"\n        },\n        \"2015-07-31\": {\n            \"RSI\": \"55.4021\"\n        },\n        \"2015-06-30\": {\n            \"RSI\": \"54.2285\"\n        },\n        \"2015-05-29\": {\n            \"RSI\": \"55.7567\"\n        },\n        \"2015-04-30\": {\n            \"RSI\": \"56.7868\"\n        },\n        \"2015-03-31\": {\n            \"RSI\": \"52.9667\"\n        },\n        \"2015-02-27\": {\n            \"RSI\": \"54.8687\"\n        },\n        \"2015-01-30\": {\n            \"RSI\": \"53.0860\"\n        },\n        \"2014-12-31\": {\n            \"RSI\": \"56.9520\"\n        },\n        \"2014-11-28\": {\n            \"RSI\": \"57.8806\"\n        },\n        \"2014-10-31\": {\n            \"RSI\": \"57.4507\"\n        },\n        \"2014-09-30\": {\n            \"RSI\": \"57.1567\"\n        },\n        \"2014-08-29\": {\n            \"RSI\": \"56.6944\"\n        },\n        \"2014-07-31\": {\n            \"RSI\": \"55.5471\"\n        },\n        \"2014-06-30\": {\n            \"RSI\": \"54.7922\"\n        },\n        \"2014-05-30\": {\n            \"RSI\": \"54.3972\"\n        },\n        \"2014-04-30\": {\n            \"RSI\": \"54.1180\"\n        },\n        \"2014-03-31\": {\n            \"RSI\": \"54.4751\"\n        },\n        \"2014-02-28\": {\n            \"RSI\": \"53.0974\"\n        },\n        \"2014-01-31\": {\n            \"RSI\": \"52.8521\"\n        },\n        \"2013-12-31\": {\n            \"RSI\": \"52.6301\"\n        },\n        \"2013-11-29\": {\n            \"RSI\": \"53.0400\"\n        },\n        \"2013-10-31\": {\n            \"RSI\": \"51.6430\"\n        },\n        \"2013-09-30\": {\n            \"RSI\": \"50.5181\"\n        },\n        \"2013-08-30\": {\n            \"RSI\": \"50.5832\"\n        },\n        \"2013-07-31\": {\n            \"RSI\": \"49.7582\"\n        },\n        \"2013-06-28\": {\n            \"RSI\": \"51.2111\"\n        },\n        \"2013-05-31\": {\n            \"RSI\": \"51.4042\"\n        },\n        \"2013-04-30\": {\n            \"RSI\": \"50.4765\"\n        },\n        \"2013-03-28\": {\n            \"RSI\": \"48.0495\"\n        },\n        \"2013-02-28\": {\n            \"RSI\": \"47.5988\"\n        },\n        \"2013-01-31\": {\n            \"RSI\": \"47.4043\"\n        },\n        \"2012-12-31\": {\n            \"RSI\": \"46.9967\"\n        },\n        \"2012-11-30\": {\n            \"RSI\": \"46.9451\"\n        },\n        \"2012-10-31\": {\n            \"RSI\": \"47.8727\"\n        },\n        \"2012-09-28\": {\n            \"RSI\": \"48.4674\"\n        },\n        \"2012-08-31\": {\n            \"RSI\": \"48.9856\"\n        },\n        \"2012-07-31\": {\n            \"RSI\": \"48.2956\"\n        },\n        \"2012-06-29\": {\n            \"RSI\": \"48.8326\"\n        },\n        \"2012-05-31\": {\n            \"RSI\": \"48.1261\"\n        },\n        \"2012-04-30\": {\n            \"RSI\": \"49.4771\"\n        },\n        \"2012-03-30\": {\n            \"RSI\": \"49.5930\"\n        },\n        \"2012-02-29\": {\n            \"RSI\": \"49.3434\"\n        },\n        \"2012-01-31\": {\n            \"RSI\": \"48.2663\"\n        },\n        \"2011-12-30\": {\n            \"RSI\": \"46.4643\"\n        },\n        \"2011-11-30\": {\n            \"RSI\": \"46.2691\"\n        },\n        \"2011-10-31\": {\n            \"RSI\": \"46.7305\"\n        },\n        \"2011-09-30\": {\n            \"RSI\": \"45.8535\"\n        },\n        \"2011-08-31\": {\n            \"RSI\": \"46.5923\"\n        },\n        \"2011-07-29\": {\n            \"RSI\": \"46.9390\"\n        },\n        \"2011-06-30\": {\n            \"RSI\": \"46.2531\"\n        },\n        \"2011-05-31\": {\n            \"RSI\": \"45.7672\"\n        },\n        \"2011-04-29\": {\n            \"RSI\": \"46.1429\"\n        },\n        \"2011-03-31\": {\n            \"RSI\": \"45.8894\"\n        },\n        \"2011-02-28\": {\n            \"RSI\": \"46.3698\"\n        },\n        \"2011-01-31\": {\n            \"RSI\": \"46.8320\"\n        },\n        \"2010-12-31\": {\n            \"RSI\": \"46.9061\"\n        },\n        \"2010-11-30\": {\n            \"RSI\": \"45.6998\"\n        },\n        \"2010-10-29\": {\n            \"RSI\": \"46.2462\"\n        },\n        \"2010-09-30\": {\n            \"RSI\": \"45.2549\"\n        },\n        \"2010-08-31\": {\n            \"RSI\": \"44.7847\"\n        },\n        \"2010-07-30\": {\n            \"RSI\": \"45.6641\"\n        },\n        \"2010-06-30\": {\n            \"RSI\": \"44.3862\"\n        },\n        \"2010-05-28\": {\n            \"RSI\": \"45.4295\"\n        },\n        \"2010-04-30\": {\n            \"RSI\": \"47.2778\"\n        },\n        \"2010-03-31\": {\n            \"RSI\": \"46.7181\"\n        },\n        \"2010-02-26\": {\n            \"RSI\": \"46.4423\"\n        },\n        \"2010-01-29\": {\n            \"RSI\": \"46.2258\"\n        },\n        \"2009-12-31\": {\n            \"RSI\": \"47.1015\"\n        },\n        \"2009-11-30\": {\n            \"RSI\": \"46.6407\"\n        },\n        \"2009-10-30\": {\n            \"RSI\": \"45.9157\"\n        },\n        \"2009-09-30\": {\n            \"RSI\": \"45.0401\"\n        },\n        \"2009-08-31\": {\n            \"RSI\": \"44.5720\"\n        },\n        \"2009-07-31\": {\n            \"RSI\": \"44.0790\"\n        },\n        \"2009-06-30\": {\n            \"RSI\": \"44.1642\"\n        },\n        \"2009-05-29\": {\n            \"RSI\": \"42.9192\"\n        },\n        \"2009-04-30\": {\n            \"RSI\": \"42.6450\"\n        },\n        \"2009-03-31\": {\n            \"RSI\": \"41.8235\"\n        },\n        \"2009-02-27\": {\n            \"RSI\": \"40.8483\"\n        },\n        \"2009-01-30\": {\n            \"RSI\": \"41.1375\"\n        },\n        \"2008-12-31\": {\n            \"RSI\": \"41.8528\"\n        },\n        \"2008-11-28\": {\n            \"RSI\": \"42.0918\"\n        },\n        \"2008-10-31\": {\n            \"RSI\": \"42.7391\"\n        },\n        \"2008-09-30\": {\n            \"RSI\": \"44.1126\"\n        },\n        \"2008-08-29\": {\n            \"RSI\": \"44.3047\"\n        },\n        \"2008-07-31\": {\n            \"RSI\": \"43.6759\"\n        },\n        \"2008-06-30\": {\n            \"RSI\": \"44.2339\"\n        },\n        \"2008-05-30\": {\n            \"RSI\": \"44.4859\"\n        },\n        \"2008-04-30\": {\n            \"RSI\": \"44.5473\"\n        },\n        \"2008-03-31\": {\n            \"RSI\": \"44.4947\"\n        },\n        \"2008-02-29\": {\n            \"RSI\": \"44.0567\"\n        },\n        \"2008-01-31\": {\n            \"RSI\": \"45.6732\"\n        },\n        \"2007-12-31\": {\n            \"RSI\": \"46.6042\"\n        },\n        \"2007-11-30\": {\n            \"RSI\": \"45.8835\"\n        },\n        \"2007-10-31\": {\n            \"RSI\": \"46.8787\"\n        },\n        \"2007-09-28\": {\n            \"RSI\": \"44.1610\"\n        },\n        \"2007-08-31\": {\n            \"RSI\": \"43.8815\"\n        },\n        \"2007-07-31\": {\n            \"RSI\": \"43.9583\"\n        },\n        \"2007-06-29\": {\n            \"RSI\": \"44.0979\"\n        },\n        \"2007-05-31\": {\n            \"RSI\": \"44.4496\"\n        },\n        \"2007-04-30\": {\n            \"RSI\": \"44.1814\"\n        },\n        \"2007-03-30\": {\n            \"RSI\": \"43.4430\"\n        },\n        \"2007-02-28\": {\n            \"RSI\": \"43.5248\"\n        },\n        \"2007-01-31\": {\n            \"RSI\": \"44.2568\"\n        },\n        \"2006-12-29\": {\n            \"RSI\": \"43.9132\"\n        },\n        \"2006-11-30\": {\n            \"RSI\": \"43.7432\"\n        },\n        \"2006-10-31\": {\n            \"RSI\": \"43.5252\"\n        },\n        \"2006-09-29\": {\n            \"RSI\": \"43.0728\"\n        },\n        \"2006-08-31\": {\n            \"RSI\": \"42.5254\"\n        },\n        \"2006-07-31\": {\n            \"RSI\": \"41.9821\"\n        },\n        \"2006-06-30\": {\n            \"RSI\": \"41.7319\"\n        },\n        \"2006-05-31\": {\n            \"RSI\": \"41.5205\"\n        },\n        \"2006-04-28\": {\n            \"RSI\": \"41.8639\"\n        },\n        \"2006-03-31\": {\n            \"RSI\": \"42.5679\"\n        },\n        \"2006-02-28\": {\n            \"RSI\": \"42.4625\"\n        },\n        \"2006-01-31\": {\n            \"RSI\": \"42.7518\"\n        },\n        \"2005-12-30\": {\n            \"RSI\": \"42.1483\"\n        },\n        \"2005-11-30\": {\n            \"RSI\": \"42.4841\"\n        },\n        \"2005-10-31\": {\n            \"RSI\": \"41.8970\"\n        },\n        \"2005-09-30\": {\n            \"RSI\": \"41.9033\"\n        },\n        \"2005-08-31\": {\n            \"RSI\": \"42.2485\"\n        },\n        \"2005-07-29\": {\n            \"RSI\": \"41.7440\"\n        },\n        \"2005-06-30\": {\n            \"RSI\": \"41.5262\"\n        },\n        \"2005-05-31\": {\n            \"RSI\": \"41.7168\"\n        },\n        \"2005-04-29\": {\n            \"RSI\": \"41.5799\"\n        },\n        \"2005-03-31\": {\n            \"RSI\": \"41.2746\"\n        },\n        \"2005-02-28\": {\n            \"RSI\": \"41.4607\"\n        },\n        \"2005-01-31\": {\n            \"RSI\": \"41.6689\"\n        },\n        \"2004-12-31\": {\n            \"RSI\": \"41.7496\"\n        },\n        \"2004-11-30\": {\n            \"RSI\": \"41.7659\"\n        },\n        \"2004-10-29\": {\n            \"RSI\": \"41.9718\"\n        },\n        \"2004-09-30\": {\n            \"RSI\": \"41.8944\"\n        },\n        \"2004-08-31\": {\n            \"RSI\": \"41.8111\"\n        },\n        \"2004-07-30\": {\n            \"RSI\": \"42.0117\"\n        },\n        \"2004-06-30\": {\n            \"RSI\": \"42.0233\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "LatestData",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=SPY&apikey={{alphaVantageApiKey}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"alphavantage",
+						"co"
+					],
+					"path": [
+						"query"
+					],
+					"query": [
+						{
+							"key": "function",
+							"value": "GLOBAL_QUOTE"
+						},
+						{
+							"key": "symbol",
+							"value": "SPY"
+						},
+						{
+							"key": "apikey",
+							"value": "{{alphaVantageApiKey}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "LatestDataExample",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=SPY&apikey={{alphaVantageApiKey}}",
+							"protocol": "https",
+							"host": [
+								"www",
+								"alphavantage",
+								"co"
+							],
+							"path": [
+								"query"
+							],
+							"query": [
+								{
+									"key": "function",
+									"value": "GLOBAL_QUOTE"
+								},
+								{
+									"key": "symbol",
+									"value": "SPY"
+								},
+								{
+									"key": "apikey",
+									"value": "{{alphaVantageApiKey}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/19.7.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 25 Mar 2020 10:34:15 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Global Quote\": {\n        \"01. symbol\": \"SPY\",\n        \"02. open\": \"234.4200\",\n        \"03. high\": \"244.1000\",\n        \"04. low\": \"233.8000\",\n        \"05. price\": \"243.1500\",\n        \"06. volume\": \"224992300\",\n        \"07. latest trading day\": \"2020-03-24\",\n        \"08. previous close\": \"222.9500\",\n        \"09. change\": \"20.2000\",\n        \"10. change percent\": \"9.0603%\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "cd0ea2ab-07d7-4062-bfbd-6d642b98e31b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7fec0544-1cd8-4a6a-9a3d-0dfb13641341",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -64,22 +64,16 @@ public class QuantopianContestPage extends BasePage {
         return this;
     }
 
-    public QuantopianContestPage pressJoinButton() {
+    public void pressJoinButton() {
         WebElement joinButton = modalSubmitWindow.findElement(joinButtonLocator);
         joinButton.click();
-        return this;
     }
 
     public boolean allWarningsAreActive() {
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(firstNameWarningLocator));
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(lastNameWarningLocator));
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(emailWarningLocator));
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(passwordWarningLocator));
-        } catch (TimeoutException e) {
-            return false;
-        }
-        return true;
+        return  waitUntilVisibleOrTimedOut(firstNameWarningLocator) &&
+                waitUntilVisibleOrTimedOut(lastNameWarningLocator) &&
+                waitUntilVisibleOrTimedOut(emailWarningLocator) &&
+                waitUntilVisibleOrTimedOut(passwordWarningLocator);
     }
 
     private void waitForModalWindow() {

@@ -68,13 +68,4 @@ public class QuantopianLoginPage extends BasePage {
     public boolean failedLoginMessageIsActive() {
         return waitUntilVisibleOrTimedOut(failedLoginMessageLocator);
     }
-
-    private boolean waitUntilVisibleOrTimedOut(By locator) {
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        } catch (TimeoutException e) {
-            return false;
-        }
-        return true;
-    }
 }

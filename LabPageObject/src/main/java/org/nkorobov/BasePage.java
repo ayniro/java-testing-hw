@@ -1,7 +1,10 @@
 package org.nkorobov;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
@@ -32,5 +35,14 @@ public class BasePage {
 
     protected void openPage() {
         driver.get(pageUrl);
+    }
+
+    protected boolean waitUntilVisibleOrTimedOut(By locator) {
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (TimeoutException e) {
+            return false;
+        }
+        return true;
     }
 }

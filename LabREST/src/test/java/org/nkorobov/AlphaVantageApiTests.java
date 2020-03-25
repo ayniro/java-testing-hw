@@ -30,7 +30,7 @@ public class AlphaVantageApiTests {
     @Test
     public void getGlobalQuoteTest()
     {
-        Response response =
+        JsonPath path =
                 given().
                     param("function", "GLOBAL_QUOTE").
                     param("symbol", "SPY").
@@ -38,15 +38,14 @@ public class AlphaVantageApiTests {
                     get().
                 then().
                     body(matchesJsonSchemaInClasspath("globalQuoteJsonSchema.json")).
-                    extract().response();
+                extract().jsonPath();
 
-        JsonPath path = new JsonPath(response.asString());
         Assert.assertEquals("SPY", path.getString("'Global Quote'.'01. symbol'"));
     }
 
     @Test
     public void symbolSearchTest() {
-        Response response =
+        JsonPath path =
                 given().
                     param("function", "SYMBOL_SEARCH").
                     param("keywords", "tesla").
@@ -55,9 +54,8 @@ public class AlphaVantageApiTests {
                     get().
                 then().
                     body(matchesJsonSchemaInClasspath("symbolSearchJsonSchema.json")).
-                extract().response();
+                extract().jsonPath();
 
-        JsonPath path = new JsonPath(response.asString());
         Assert.assertEquals("TSLA", path.getString("bestMatches[0].'1. symbol'"));
         Assert.assertEquals("Tesla Inc.", path.getString("bestMatches[0].'2. name'"));
         Assert.assertEquals("Equity", path.getString("bestMatches[0].'3. type'"));

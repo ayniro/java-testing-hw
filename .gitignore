@@ -1,8 +1,11 @@
-#Idea files
+# Idea files
 */.idea/
 
 # .iml files
 */*.iml
+
+# Target dir
+*/Target/
 
 # Compiled class file
 *.class

@@ -1,0 +1,111 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "required": [
+        "Global Quote"
+    ],
+    "properties": {
+        "Global Quote": {
+            "type": "object",
+            "default": {},
+            "examples": [
+                {
+                    "01. symbol": "SPY",
+                    "02. open": "234.4200",
+                    "03. high": "244.1000",
+                    "04. low": "233.8000",
+                    "05. price": "243.1500",
+                    "06. volume": "224992300",
+                    "07. latest trading day": "2020-03-24",
+                    "08. previous close": "222.9500",
+                    "09. change": "20.2000",
+                    "10. change percent": "9.0603%"
+                }
+            ],
+            "required": [
+                "01. symbol",
+                "02. open",
+                "03. high",
+                "04. low",
+                "05. price",
+                "06. volume",
+                "07. latest trading day",
+                "08. previous close",
+                "09. change",
+                "10. change percent"
+            ],
+            "properties": {
+                "01. symbol": {
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "SPY"
+                    ]
+                },
+                "02. open": {
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "234.4200"
+                    ]
+                },
+                "03. high": {
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "244.1000"
+                    ]
+                },
+                "04. low": {
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "233.8000"
+                    ]
+                },
+                "05. price": {
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "243.1500"
+                    ]
+                },
+                "06. volume": {
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "224992300"
+                    ]
+                },
+                "07. latest trading day": {
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "2020-03-24"
+                    ]
+                },
+                "08. previous close": {
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "222.9500"
+                    ]
+                },
+                "09. change": {
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "20.2000"
+                    ]
+                },
+                "10. change percent": {
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "9.0603%"
+                    ]
+                }
+            }
+        }
+    }
+}

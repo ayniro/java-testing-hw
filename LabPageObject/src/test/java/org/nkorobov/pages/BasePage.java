@@ -1,4 +1,4 @@
-package org.nkorobov;
+package org.nkorobov.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

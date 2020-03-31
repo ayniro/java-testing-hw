@@ -1,5 +1,8 @@
-package org.nkorobov;
+package org.nkorobov.pages;
 
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.nkorobov.cucumberTests.CucumberHooks;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -29,8 +32,10 @@ public class QuantopianContestPage extends BasePage {
 
     private WebElement modalSubmitWindow;
 
-    public QuantopianContestPage(WebDriver driver) {
-        this(driver, true);
+    public QuantopianContestPage() {
+        this(CucumberHooks.getDriver(), false);
+        // Probably it is not the best idea to mix cucumber-specific calls with junit-only oriented page object
+        // But it kinda works, so yeah
     }
 
     public QuantopianContestPage(WebDriver driver, boolean openPage) {
@@ -46,29 +51,34 @@ public class QuantopianContestPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    @When("^I press Home button on Contest page$")
     public QuantopianHomePage transitionToHomePage() {
         homeLink.click();
         waitForReadyStateComplete();
         return new QuantopianHomePage(driver, false);
     }
 
+    @When("^I press Submit Entry$")
     public QuantopianContestPage pressSubmitEntry() {
         submitButton.click();
         waitForModalWindow();
         return this;
     }
 
+    @When("^I check Terms of Use checkbox$")
     public QuantopianContestPage checkTermsOfUseCheckbox() {
         WebElement checkBox = modalSubmitWindow.findElement(termsOfUseCheckboxLocator);
         checkBox.click();
         return this;
     }
 
+    @When("^I press Join Button$")
     public void pressJoinButton() {
         WebElement joinButton = modalSubmitWindow.findElement(joinButtonLocator);
         joinButton.click();
     }
 
+    @Then("^All register warnings are active$")
     public boolean allWarningsAreActive() {
         return  waitUntilVisibleOrTimedOut(firstNameWarningLocator) &&
                 waitUntilVisibleOrTimedOut(lastNameWarningLocator) &&

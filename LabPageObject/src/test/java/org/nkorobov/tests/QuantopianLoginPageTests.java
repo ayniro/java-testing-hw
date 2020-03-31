@@ -1,15 +1,16 @@
-package org.nkorobov;
+package org.nkorobov.tests;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.nkorobov.pages.QuantopianLoginPage;
 
 public class QuantopianLoginPageTests extends BaseTests {
 
     @Category(TestCategories.LoginTests.class)
     @Test
     public void loginAttemptEmptyFieldsTest() {
-        QuantopianLoginPage loginPage = new QuantopianLoginPage(driver);
+        QuantopianLoginPage loginPage = new QuantopianLoginPage(driver, true);
         loginPage.signIn();
 
         Assert.assertTrue(loginPage.emailWarningIsActive());

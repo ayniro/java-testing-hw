@@ -1,12 +1,14 @@
-package org.nkorobov;
+package org.nkorobov.pages;
 
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.nkorobov.cucumberTests.CucumberHooks;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class QuantopianLoginPage extends BasePage {
 
@@ -26,8 +28,10 @@ public class QuantopianLoginPage extends BasePage {
     private By passwordWarningLocator = By.xpath("//label[@id='user_password-error']");
     private By failedLoginMessageLocator = By.xpath("//div[@class='message']");
 
-    public QuantopianLoginPage(WebDriver driver) {
-        this(driver, true);
+    public QuantopianLoginPage() {
+        this(CucumberHooks.getDriver(), false);
+        // Probably it is not the best idea to mix cucumber-specific calls with junit-only oriented page object
+        // But it kinda works, so yeah
     }
 
     public QuantopianLoginPage(WebDriver driver, boolean openPage) {
@@ -43,18 +47,36 @@ public class QuantopianLoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    @When("^I enter email \"(.*)\"$")
     public QuantopianLoginPage enterEmail(String email) {
         emailInput.sendKeys(email);
         return this;
     }
 
+    @When("^I enter password \"(.*)\"$")
     public QuantopianLoginPage enterPassword(String password) {
         passwordInput.sendKeys(password);
         return this;
     }
 
+    @When("^I press SignIn$")
     public void signIn() {
         signInButton.click();
+    }
+
+    @Then("^Login Email warning is active$")
+    public void assertEmailWarning() {
+        Assert.assertTrue(emailWarningIsActive());
+    }
+
+    @Then("^Login Password warning is active$")
+    public void assertPasswordWarning() {
+        Assert.assertTrue(passwordWarningIsActive());
+    }
+
+    @Then("^Failed Login message is active$")
+    public void assertFailedLoginMessage() {
+        Assert.assertTrue(failedLoginMessageIsActive());
     }
 
     public boolean emailWarningIsActive() {

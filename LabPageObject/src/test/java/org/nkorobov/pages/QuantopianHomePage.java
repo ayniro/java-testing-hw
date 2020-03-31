@@ -1,5 +1,7 @@
-package org.nkorobov;
+package org.nkorobov.pages;
 
+import io.cucumber.java.en.When;
+import org.nkorobov.cucumberTests.CucumberHooks;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,8 +21,10 @@ public class QuantopianHomePage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'Contest')]")
     private WebElement contestButton;
 
-    public QuantopianHomePage(WebDriver driver) {
-        this(driver, true);
+    public QuantopianHomePage() {
+        this(CucumberHooks.getDriver(), false);
+        // Probably it is not the best idea to mix cucumber-specific calls with junit-only oriented page object
+        // But it kinda works, so yeah
     }
 
     public QuantopianHomePage(WebDriver driver, boolean openPage) {
@@ -37,12 +41,14 @@ public class QuantopianHomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    @When("^I press Login button on Home page$")
     public QuantopianLoginPage transitionToLoginPage() {
         loginButton.click();
         waitForReadyStateComplete();
         return new QuantopianLoginPage(driver, false);
     }
 
+    @When("^I press Contest Button on Home page$")
     public QuantopianContestPage transitionToContestPage() {
         contestButton.click();
         waitForReadyStateComplete();

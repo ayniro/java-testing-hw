@@ -13,8 +13,8 @@ public class QuantopianLoginPageTests extends BaseTests {
         QuantopianLoginPage loginPage = new QuantopianLoginPage(driver, true);
         loginPage.signIn();
 
-        Assert.assertTrue(loginPage.emailWarningIsActive());
-        Assert.assertTrue(loginPage.passwordWarningIsActive());
+        loginPage.assertEmailWarning();
+        loginPage.assertPasswordWarning();
     }
 
     @Category(TestCategories.LoginTests.class)
@@ -23,7 +23,7 @@ public class QuantopianLoginPageTests extends BaseTests {
         QuantopianLoginPage loginPage = new QuantopianLoginPage(driver, true);
         loginPage.enterEmail("Sometimes stonks go down, but then they go up").enterPassword("");
 
-        Assert.assertTrue(loginPage.emailWarningIsActive());
+        loginPage.assertEmailWarning();
     }
 
     @Category(TestCategories.LoginTests.class)
@@ -32,7 +32,7 @@ public class QuantopianLoginPageTests extends BaseTests {
         QuantopianLoginPage loginPage = new QuantopianLoginPage(driver, true);
         loginPage.enterEmail("$SPY_100P_4/17@gmail.com").enterPassword("BearsBearsBears").signIn();
 
-        Assert.assertTrue(loginPage.failedLoginMessageIsActive());
+        loginPage.assertFailedLoginMessage();
     }
 
 }

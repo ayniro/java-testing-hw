@@ -47,47 +47,41 @@ public class QuantopianLoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @When("^I enter email \"(.*)\"$")
     public QuantopianLoginPage enterEmail(String email) {
         emailInput.sendKeys(email);
         return this;
     }
 
-    @When("^I enter password \"(.*)\"$")
     public QuantopianLoginPage enterPassword(String password) {
         passwordInput.sendKeys(password);
         return this;
     }
 
-    @When("^I press SignIn$")
     public void signIn() {
         signInButton.click();
     }
 
-    @Then("^Login Email warning is active$")
     public void assertEmailWarning() {
         Assert.assertTrue(emailWarningIsActive());
     }
 
-    @Then("^Login Password warning is active$")
     public void assertPasswordWarning() {
         Assert.assertTrue(passwordWarningIsActive());
     }
 
-    @Then("^Failed Login message is active$")
     public void assertFailedLoginMessage() {
         Assert.assertTrue(failedLoginMessageIsActive());
     }
 
-    public boolean emailWarningIsActive() {
+    private boolean emailWarningIsActive() {
         return waitUntilVisibleOrTimedOut(emailWarningLocator);
     }
 
-    public boolean passwordWarningIsActive() {
+    private boolean passwordWarningIsActive() {
         return waitUntilVisibleOrTimedOut(passwordWarningLocator);
     }
 
-    public boolean failedLoginMessageIsActive() {
+    private boolean failedLoginMessageIsActive() {
         return waitUntilVisibleOrTimedOut(failedLoginMessageLocator);
     }
 }

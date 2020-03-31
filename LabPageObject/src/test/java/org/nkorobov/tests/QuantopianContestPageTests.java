@@ -12,7 +12,7 @@ public class QuantopianContestPageTests extends BaseTests {
     @Test
     public void transitionFromContestToHome() {
         QuantopianContestPage contestPage = new QuantopianContestPage(driver, true);
-        QuantopianHomePage homePage = contestPage.transitionToHomePage();
+        QuantopianHomePage homePage = contestPage.pressHomeButton();
 
         Assert.assertEquals(homePage.getPageTitle(), driver.getTitle());
         Assert.assertEquals(homePage.getFullHomePageUrl(), driver.getCurrentUrl());
@@ -24,7 +24,7 @@ public class QuantopianContestPageTests extends BaseTests {
         QuantopianContestPage contestPage = new QuantopianContestPage(driver, true);
         contestPage.pressSubmitEntry().checkTermsOfUseCheckbox().pressJoinButton();
 
-        Assert.assertTrue(contestPage.allWarningsAreActive());
+        contestPage.assertAllWarnings();
     }
 
 }

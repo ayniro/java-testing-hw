@@ -1,9 +1,6 @@
 # Idea files
 */.idea/
 
-# .iml files
-*/*.iml
-
 # Target dir
 */Target/
 

@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AppTests {
     static AndroidDriver<MobileElement> driver;
+    static AndroidDriverManager driverManager;
     private LoginLayout loginLayout;
 
     private static final String userName = "Kappa";
@@ -16,29 +17,32 @@ public class AppTests {
 
     @BeforeClass
     public static void prepareTest() {
-        AndroidDriverManager driverManager = new AndroidDriverManager();
+        driverManager = new AndroidDriverManager();
         driver = driverManager.getDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    }
+
+    @AfterClass
+    public static void teardownDriver() {
+        driverManager.quitDriver();
     }
 
     @Before
     public void initPageObject() {
-        AndroidDriverManager driverManager = new AndroidDriverManager();
-        driver = driverManager.getDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
+        driver.launchApp();
         loginLayout = new LoginLayout(driver);
     }
 
     @After
-    public void resetApp() {
-        driver.resetApp();
+    public void closeApp() {
+        driver.closeApp();
     }
 
     @Test
     public void loginTest() {
         registerNewUser();
         loginLayout.enterEmailAndPassword(email, password);
+        Assert.assertEquals(ExpensesLayout.getActivityName(), driver.currentActivity());
     }
 
     @Test

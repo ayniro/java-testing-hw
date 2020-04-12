@@ -3,8 +3,11 @@ package org.nkorobov;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -24,6 +27,10 @@ public class ExpensesLayout {
 
     public AddExpenseLayout pressAddExpense() {
         addExpenseButton.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("new_expense_title_edit")));
+
         return new AddExpenseLayout(driver);
     }
 

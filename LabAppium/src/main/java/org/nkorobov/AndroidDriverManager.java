@@ -23,6 +23,11 @@ public class AndroidDriverManager {
             driver.quit();
             driver = null;
         }
+
+        if (appiumDriverLocalService != null) {
+            appiumDriverLocalService.stop();
+            appiumDriverLocalService = null;
+        }
     }
 
     public AndroidDriver<MobileElement> getDriver() {
